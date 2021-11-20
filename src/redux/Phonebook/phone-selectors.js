@@ -1,9 +1,16 @@
-export const getContacts = state => state.contacts.contactItems;
-export const getFilter = state => state.contacts.filter;
-export const getFiltredContacts = state => {
-  const lowerCasedFilter = getFilter(state).toLowerCase();
-  const filteredContacts = getContacts(state).filter(({ name }) =>
-    name.toLowerCase().includes(lowerCasedFilter),
-  );
-  return filteredContacts;
-};
+import { createSelector } from "reselect";
+
+export const getContacts = (state) => state.Phonebook.entities;
+export const getFilter = (state) => state.Phonebook.filter;
+export const getLoading = (state) => state.Phonebook.isLoading;
+export const getError = (state) => state.Phonebook.error;
+
+export const getVisibleContacts = createSelector(
+  [getContacts, getFilter],
+  (contacts, filter) => {
+    const normalizedFilter = filter.toLowerCase();
+    return contacts.filter(({ name }) =>
+      name.toLowerCase().includes(normalizedFilter)
+    );
+  }
+);

@@ -1,19 +1,8 @@
-import { v4 as uuidv4 } from "uuid";
-
 import { createAction } from "@reduxjs/toolkit";
 
-const addContact = createAction("contacts/Add", ({ name, number }) => ({
-  payload: {
-    name,
-    number,
-    id: uuidv4(),
-  },
-}));
+// Создание действий
+export  const deleteContact = createAction("contacts/deleteContact");
 
-const deleteContact = createAction("contacts/Delete");
+export  const changeFilter = createAction("contacts/changeFilter");
 
-const changeFilter = createAction("contacts/changeFilter");
 
-const actions = { addContact, deleteContact, changeFilter };
-
-export default actions;

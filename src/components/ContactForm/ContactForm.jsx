@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getContacts } from "../../redux/Phonebook/phone-selectors";
-import actions from "../../redux/Phonebook/phone-actions";
+import { useDispatch } from "react-redux";
+import {contactsOperations} from '../../redux/Phonebook/index'
 import s from "./ContactForm.module.css";
 
+
 export default function Form() {
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
-  const contacts = useSelector(getContacts);
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
+	const [name, setName] = useState("");
+	const [number, setNumber] = useState("");
+  
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value=''} = e.target;
     switch (name) {
       case "name":
         setName(value);
@@ -22,24 +22,21 @@ export default function Form() {
       default:
         return;
     }
-  };
+};
 
+  const resetState = () => {
+	setName("");
+	setNumber("");
+  };
+	
+	
+	
+	
+	
   const handleSubmit = (e) => {
     e.preventDefault();
-    const comparableElement = contacts.some(
-      (element) => element.name.toLowerCase() === name.toLowerCase()
-    );
-    if (comparableElement) {
-      reset();
-      return alert(`${name} is already in the directory`);
-    }
-    dispatch(actions.addContact({ name, number }));
-    reset();
-  };
-
-  const reset = () => {
-    setName("");
-    setNumber("");
+	  dispatch(contactsOperations.addContact({ name, number }));
+	  resetState()
   };
 
   return (

@@ -1,15 +1,18 @@
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-
-import { getFilter } from '../../redux/Phonebook/phone-selectors';
-import actions from '../../redux/Phonebook/phone-actions';
+import {contactsSelectors, contactsActions} from './../../redux/Phonebook/index'
+import PropTypes from 'prop-types';
 import s from './Filter.module.css';
 
+
+
 export default function Filter() {
-  const filter = useSelector(getFilter);
-  const dispatch = useDispatch();
+  const value = useSelector(contactsSelectors.getFilter);
+	const dispatch = useDispatch();
+	
+
+
   const onChangeInput = e => {
-    dispatch(actions.changeFilter(e.currentTarget.value));
+    dispatch(contactsActions.changeFilter(e.target.value));
   };
   return (
     <label className={s.textFilter}>
@@ -17,7 +20,7 @@ export default function Filter() {
       <input
         className={s.inputFilter}
         type="text"
-        value={filter}
+        value={value}
         onChange={onChangeInput}
       />
     </label>
