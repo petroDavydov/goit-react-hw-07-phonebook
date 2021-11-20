@@ -1,42 +1,27 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {contactsOperations} from '../../redux/Phonebook/index'
+import { contactsOperations } from "../../redux/Phonebook/index";
 import s from "./ContactForm.module.css";
 
-
 export default function Form() {
-	const dispatch = useDispatch();
-	const [name, setName] = useState("");
-	const [number, setNumber] = useState("");
-  
+  const dispatch = useDispatch();
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
 
   const handleInputChange = (e) => {
-    const { name, value=''} = e.target;
-    switch (name) {
-      case "name":
-        setName(value);
-        break;
-      case "number":
-        setNumber(value);
-        break;
-      default:
-        return;
-    }
-};
+    const { name, value = "" } = e.target;
+    name === "name" ? setName(value) : setNumber(value);
+  };
 
   const resetState = () => {
-	setName("");
-	setNumber("");
+    setName("");
+    setNumber("");
   };
-	
-	
-	
-	
-	
+
   const handleSubmit = (e) => {
     e.preventDefault();
-	  dispatch(contactsOperations.addContact({ name, number }));
-	  resetState()
+    dispatch(contactsOperations.addContact({ name, number }));
+    resetState();
   };
 
   return (

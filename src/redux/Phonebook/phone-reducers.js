@@ -2,10 +2,10 @@ import { createReducer } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 
 import { fetchContacts, addContact, deleteContact } from "./phone-operations";
-import { contactsActions } from ".";// я так и не понял что єто
+import { changeFilter } from "./phone-actions"; // я так и не понял что єто
 
 const entities = createReducer([], {
-  [fetchContacts.fulfilled]: (_, state, { payload }) => payload,
+  [fetchContacts.fulfilled]: (_, { payload }) => payload,
   [addContact.fulfilled]: (state, { payload }) => [payload, ...state],
   [deleteContact.fulfilled]: (state, { payload }) =>
     state.filter((contact) => contact.id !== payload),
@@ -33,7 +33,7 @@ const error = createReducer(null, {
 });
 
 const filter = createReducer("", {
-  [contactsActions.changeFilter]: (_state, { payload }) => payload,
+  [changeFilter]: (_state, { payload }) => payload,
 });
 
 export default combineReducers({ entities, isLoading, error, filter });

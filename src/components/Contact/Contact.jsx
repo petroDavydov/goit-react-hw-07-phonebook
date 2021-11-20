@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import s from './Contact.module.css';
+import PropTypes from "prop-types";
+import s from "./Contact.module.css";
 export default function Contact({ name, number }) {
   return (
     <>

@@ -1,4 +1,4 @@
-import { configureStore} from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import contactReducer from "./Phonebook/phone-reducers";
 import logger from "redux-logger";
 import {
@@ -10,14 +10,6 @@ import {
   REGISTER,
 } from "redux-persist";
 
-// const middleware = [
-//   ...getDefaultMiddleware({
-//     serializableCheck: {
-//       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//     } 
-//   }).concat(logger),
-// ];
-
 export const store = configureStore({
   reducer: {
     Phonebook: contactReducer,
@@ -25,8 +17,8 @@ export const store = configureStore({
   devTools: process.env.NODE_ENV === "development",
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-		serializableCheck: false,
-		 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      serializableCheck: false,
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     }).concat(logger),
 });
 

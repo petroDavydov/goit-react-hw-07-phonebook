@@ -1,3 +1,4 @@
+import Contacts from "../Contact/Contact";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -16,7 +17,7 @@ export default function ContactsList() {
     <ul>
       {contacts.map(({ name, number, id }) => (
         <li className={s.item} key={id}>
-          {name}:{number}
+          <Contacts name={name} number={number} />
           <button
             className={s.button}
             type="button"
