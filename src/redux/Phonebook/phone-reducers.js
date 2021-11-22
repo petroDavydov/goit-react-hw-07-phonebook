@@ -2,7 +2,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 
 import { fetchContacts, addContact, deleteContact } from "./phone-operations";
-import { changeFilter } from "./phone-actions"; // я так и не понял что єто
+import { changeFilter } from "./phone-actions";
 
 const entities = createReducer([], {
   [fetchContacts.fulfilled]: (_, { payload }) => payload,

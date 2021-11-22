@@ -12,7 +12,7 @@ import {
 
 export const store = configureStore({
   reducer: {
-    Phonebook: contactReducer,
+    phonebook: contactReducer,
   },
   devTools: process.env.NODE_ENV === "development",
   middleware: (getDefaultMiddleware) =>

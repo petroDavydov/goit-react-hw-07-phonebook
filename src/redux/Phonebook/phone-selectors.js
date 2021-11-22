@@ -1,9 +1,9 @@
-import { createSelector } from "reselect";
+import { createSelector } from "@reduxjs/toolkit";
 
-export const getContacts = (state) => state.Phonebook.entities;
-export const getFilter = (state) => state.Phonebook.filter;
-export const getLoading = (state) => state.Phonebook.isLoading;
-export const getError = (state) => state.Phonebook.error;
+export const getContacts = (state) => state.phonebook.entities;
+export const getFilter = (state) => state.phonebook.filter;
+export const getLoading = (state) => state.phonebook.isLoading;
+export const getError = (state) => state.phonebook.error;
 
 export const getVisibleContacts = createSelector(
   [getContacts, getFilter],
